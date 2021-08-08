@@ -8,7 +8,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DbHelper.dbHelper.initDataBase();
   runApp(ChangeNotifierProvider<TodoProvider>(
-      create: (context) => TodoProvider(), child: MaterialApp(home: MyHomePage())));
+      create: (context) => TodoProvider(),
+      child: MaterialApp(home: MyHomePage())
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +34,8 @@ class MyApp extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Provider.of<TodoProvider>(context, listen: false).changeTestName('Saleem DB');
+                Provider.of<TodoProvider>(context, listen: false)
+                    .changeTestName('Saleem DB');
                 print(Provider.of<TodoProvider>(context, listen: false).test);
               },
               child: Text('Change Provider value'),

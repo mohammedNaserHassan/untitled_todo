@@ -22,7 +22,8 @@ class TaskWidget extends StatelessWidget {
               value: task_model.isComplete,
               onChanged: (v) {
                 task_model.isComplete = v;
-               Provider.of<TodoProvider>(context,listen: false).updateTask(task_model);
+                Provider.of<TodoProvider>(context, listen: false)
+                    .updateTask(task_model);
               }),
           SizedBox(
             width: 10,
@@ -31,7 +32,8 @@ class TaskWidget extends StatelessWidget {
           Spacer(),
           IconButton(
               onPressed: () {
-                Provider.of<TodoProvider>(context,listen: false).deleteTask(task_model);
+                Provider.of<TodoProvider>(context, listen: false)
+                    .deleteTask(task_model);
               },
               icon: Icon(Icons.delete))
         ],

@@ -4,8 +4,6 @@ import 'package:untitled_todo/Models/task_model.dart';
 import 'package:untitled_todo/Providers/to_do_provider.dart';
 
 class newTaskpage extends StatefulWidget {
-
-
   newTaskpage();
 
   @override
@@ -13,14 +11,12 @@ class newTaskpage extends StatefulWidget {
 }
 
 class _newTaskpageState extends State<newTaskpage> {
-  bool isComplete = false;
-
   String taskName;
 
   SaveTask() {
-   Provider.of<TodoProvider>(context,listen: false).insertTasks(Task_model(
-     taskName: taskName,isComplete: isComplete
-   ));
+    Provider.of<TodoProvider>(context, listen: false).insertTasks(Task_model(
+        taskName: taskName,
+        isComplete: Provider.of<TodoProvider>(context,listen: false).isComplete));
     Navigator.of(context).pop();
   }
 
@@ -45,12 +41,12 @@ class _newTaskpageState extends State<newTaskpage> {
                       borderRadius: BorderRadius.circular(15))),
             ),
             Checkbox(
-                value: isComplete,
+                value:  Provider.of<TodoProvider>(context).isComplete,
                 onChanged: (v) {
-                  this.isComplete = v;
+                  Provider.of<TodoProvider>(context,listen: false).changeIscomplete(v);
                   setState(() {});
                 }),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 SaveTask();
               },
