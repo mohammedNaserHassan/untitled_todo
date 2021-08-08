@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:untitled_todo/Models/task_model.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled_todo/Providers/to_do_provider.dart';
 import 'package:untitled_todo/Widgets/task_widgets.dart';
 
 class InComleteTasks extends StatelessWidget {
-  List<Task_model> tasks;
-  Function deleteFun, updateFun;
 
-  InComleteTasks(this.tasks, this.deleteFun, this.updateFun);
+
+  InComleteTasks();
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: tasks.where((element) => !element.isComplete).length,
+      itemCount: Provider.of<TodoProvider>(context).incompletetasks.length,
       itemBuilder: (context, index) {
         return TaskWidget(
-            tasks.where((element) => !element.isComplete).toList()[index],
-            updateFun,
-            deleteFun);
+            Provider.of<TodoProvider>(context).incompletetasks[index]
+        );
       },
     );
   }
